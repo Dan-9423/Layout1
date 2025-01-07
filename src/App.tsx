@@ -2,8 +2,12 @@ import { ThemeProvider } from './components/ThemeProvider';
 import Sidebar from './components/Sidebar';
 import TopBanner from './components/TopBanner';
 import WelcomeBanner from './components/WelcomeBanner';
+import Profile from './pages/Profile';
+import { useState } from 'react';
 
 function App() {
+  const [currentPage, setCurrentPage] = useState('dashboard');
+
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-gray-100 dark:bg-[#111111]">
@@ -11,7 +15,11 @@ function App() {
           <Sidebar />
           <main className="flex-1 p-8">
             <TopBanner />
-            <WelcomeBanner />
+            {currentPage === 'dashboard' ? (
+              <WelcomeBanner />
+            ) : (
+              <Profile />
+            )}
           </main>
         </div>
       </div>
