@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { ChevronDown, LayoutDashboard, Users, Settings, BarChart2, FileText } from 'lucide-react';
+import { Plus, Minus, LayoutDashboard, Users, Settings, BarChart2, FileText, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 
 interface MenuItem {
   title: string;
@@ -56,8 +57,8 @@ export default function Sidebar() {
   ];
 
   return (
-    <div className="w-64 bg-white dark:bg-[#1C1C1C] shadow-lg h-screen rounded-tr-2xl rounded-br-2xl">
-      <div className="p-4">
+    <div className="w-64 bg-white dark:bg-[#1C1C1C] shadow-lg h-screen rounded-2xl flex flex-col">
+      <div className="p-4 flex-1">
         <div className="flex items-center justify-between mb-8">
           <span className="text-xl font-bold text-blue-600">System Name</span>
         </div>
@@ -69,7 +70,7 @@ export default function Sidebar() {
                 className={cn(
                   'w-full flex items-center justify-between p-3 rounded-lg mb-1 transition-colors duration-100',
                   expandedMenu === item.title
-                    ? 'bg-blue-50 dark:bg-blue-600 text-blue-600 dark:text-white'
+                    ? 'bg-blue-50 dark:bg-[#242424] text-blue-600 dark:text-white'
                     : 'hover:bg-gray-100 dark:hover:bg-[#242424] hover:text-blue-600 text-gray-700 dark:text-gray-300'
                 )}
               >
@@ -78,12 +79,11 @@ export default function Sidebar() {
                   <span className="font-medium transition-colors duration-100">{item.title}</span>
                 </div>
                 {item.submenu && (
-                  <ChevronDown
-                    className={cn(
-                      'w-4 h-4 transition-transform duration-100',
-                      expandedMenu === item.title ? 'transform rotate-180' : ''
-                    )}
-                  />
+                  expandedMenu === item.title ? (
+                    <Minus className="w-4 h-4" />
+                  ) : (
+                    <Plus className="w-4 h-4" />
+                  )
                 )}
               </button>
               {item.submenu && expandedMenu === item.title && (
@@ -110,6 +110,12 @@ export default function Sidebar() {
             </div>
           ))}
         </nav>
+      </div>
+      <div className="p-4 border-t border-gray-200 dark:border-gray-800">
+        <Button variant="ghost" className="w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950/10">
+          <LogOut className="mr-2 h-4 w-4" />
+          Logout
+        </Button>
       </div>
     </div>
   );

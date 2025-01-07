@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 
 export default function WelcomeBanner() {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg">
+    <div className="bg-white dark:bg-[#1C1C1C] rounded-lg p-8 shadow-lg dark:shadow-[#000000]/10">
       <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
         Welcome to Our System
       </h1>
